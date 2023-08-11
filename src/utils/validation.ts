@@ -27,13 +27,19 @@ export const authSchema = yup
   .shape({
     username: usernameSchema,
     password: passwordSchema,
+  })
+  .strict();
+export const secauthSchema = yup
+  .object()
+  .shape({
+    username: usernameSchema,
+    password: passwordSchema,
     country: countrySchema,
     city: citySchema,
 
     email: emailSchema,
   })
   .strict();
-
 export const trimmedHabitSchema = yup
   .object()
   .shape({

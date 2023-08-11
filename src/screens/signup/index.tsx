@@ -8,15 +8,19 @@ import {SigninSignupNow} from '../../components/signin-signup-now';
 import {SIGNIN_SCREEN} from '../../constants';
 import {Screen} from '../../components/common/screen';
 import {ISignUpState, SignUpScreenProps} from '../../defs';
-import {authSchema, stringifyErrorMessage, validateSchema} from '../../utils';
+import {
+  secauthSchema,
+  stringifyErrorMessage,
+  validateSchema,
+} from '../../utils';
 import {useSignUpMutation} from '../../redux/apis';
 import {customSize} from '../../theme';
 
-export const SignUpScreen = ({navigation}: SignUpScreenProps): JSX.Element => {
+export const SignUpScreen = ({navigation}: any) => {
   const styles = useStyles();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-  const [signUp, setSignUp] = useState<ISignUpState>({
+  const [signUp, setSignUp] = useState<any>({
     username: 'ali',
     password: 'ali123',
     city: 'karachi',
@@ -33,10 +37,12 @@ export const SignUpScreen = ({navigation}: SignUpScreenProps): JSX.Element => {
 
   const handleOnSubmit = async () => {
     try {
-      await validateSchema(authSchema, signUp);
-      // await signUpAction(signUp).unwrap();
-      // setModalVisible(true);
+      await validateSchema(secauthSchema, signUp);
+      const res = await signUpAction(signUp).unwrap();
+      console.log({res});
+      setModalVisible(true);
     } catch (error: any) {
+      console.log({error});
       setErrorMessage(`Error: ${stringifyErrorMessage(error)}`);
     }
   };

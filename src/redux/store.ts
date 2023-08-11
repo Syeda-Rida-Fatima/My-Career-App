@@ -13,35 +13,15 @@ import {AnyAction, combineReducers} from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {apiSlice} from './apis/base-api';
-import {
-  authReducer,
-  habitTypesReducer,
-  myHabitsReducer,
-  dashboardHabitsReducer,
-  metadataReducer,
-} from './slices';
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage: AsyncStorage,
-  whitelist: [
-    'auth',
-    'login',
-    'createuser',
-    'habitTypes',
-    'myHabits',
-    'metadata',
-  ],
 };
 
 const reducers = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
-  auth: authReducer,
-  habitTypes: habitTypesReducer,
-  dashboardHabits: dashboardHabitsReducer,
-  myHabits: myHabitsReducer,
-  metadata: metadataReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

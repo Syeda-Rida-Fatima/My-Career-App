@@ -14,12 +14,12 @@ import {setUser} from '../../redux/slices';
 import {useSignInMutation} from '../../redux/apis';
 import {customSize} from '../../theme';
 
-export const SignInScreen = ({navigation}: SignInScreenProps): JSX.Element => {
+export const SignInScreen = ({navigation}: any) => {
   const styles = useStyles();
   const [signInAction, {isLoading}] = useSignInMutation();
   const dispatch = useAppDispatch();
 
-  const [signIn, setSignIn] = useState<ISignInState>({
+  const [signIn, setSignIn] = useState<any>({
     username: __DEV__ ? 'Rida' : '',
     password: __DEV__ ? 'asdfgh' : '',
   });
@@ -35,8 +35,9 @@ export const SignInScreen = ({navigation}: SignInScreenProps): JSX.Element => {
       console.log(signIn);
       await validateSchema(authSchema, signIn);
 
-      //   const {token, ...user} = await signInAction(signIn).unwrap();
-      //   dispatch(setUser({user, token}));
+      const {token, ...user} = await signInAction(signIn).unwrap();
+      console.log(token, ...user);
+      dispatch(setUser({user, token}));
     } catch (error: any) {
       console.log({error});
       if (error?.status === 500) {
