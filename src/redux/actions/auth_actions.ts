@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 
-import {AUTH} from '../../constants/endpoint/index';
+import {AUTH} from '../../constants';
 import {RestClient} from '../../network/restclient';
 import {ISignInPayload, ISignUpPayload} from '../../defs';
 
@@ -8,8 +8,9 @@ export const signInUserAction = createAsyncThunk<any, ISignInPayload>(
   'login',
   async (payload, {rejectWithValue}) => {
     try {
-      const response = await RestClient.post(AUTH.SIGNIN, payload);
+      const response = await RestClient.post(AUTH.LOGIN, payload);
       const data = response.data;
+      // console.log('payload', payload, 'data', data);
       // setup token
       return data;
     } catch (error: any) {

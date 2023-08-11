@@ -1,17 +1,21 @@
 import {createAction, createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 
-type username = {
+type User = {
   username: string;
+  country?: string;
+  city?: string;
+  email?: string;
+  password?: string;
 };
 
 type AuthState = {
-  username: username;
+  user: User;
   token: string | null;
 };
 
 const initialState: AuthState = {
-  username: {
+  user: {
     username: '',
   },
   token: null,
@@ -25,8 +29,8 @@ const authSlice = createSlice({
       return {
         ...state,
         user: {
-          ...state.username,
-          ...action.payload.username,
+          ...state.user,
+          ...action.payload.user,
         },
         token: action.payload.token || state.token,
       };

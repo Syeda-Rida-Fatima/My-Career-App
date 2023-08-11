@@ -5,8 +5,9 @@ export type ISignInState = {
 
 export type ISignUpState = {
   username: string;
+  password: string;
+
   country: string;
   city: string;
   email: string;
-  password: string;
 };

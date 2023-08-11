@@ -1,4 +1,4 @@
 export const AUTH = {
-  SIGNIN: 'login',
+  LOGIN: 'login',
   REGISTER: 'register',
 };

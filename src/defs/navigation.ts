@@ -8,8 +8,8 @@ import {
   DELETE_ACCOUNT_SCREEN,
 } from '../constants';
 export type AuthStackParamList = {
-  SIGNIN_SCREEN: undefined;
   SIGNUP_SCREEN: undefined;
+  SIGNIN_SCREEN: undefined;
 };
 
 export type DashboardStackParamList = {
